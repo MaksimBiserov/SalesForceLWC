@@ -1,0 +1,17 @@
+.empty-list {
+    font-weight: bold;
+}
+
+/*Different colors for different categories*/
+
+[data-category='Today'] {
+    background: #fc7777;
+}
+
+[data-category='Tomorrow'] {
+    background: #fcf377;
+}
+
+[data-category='Later'] {
+    background: #7bfc77;
+}

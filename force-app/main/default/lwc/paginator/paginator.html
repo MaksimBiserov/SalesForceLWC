@@ -1,0 +1,24 @@
+<template>
+    <lightning-layout>
+        <lightning-layout-item>
+            <lightning-button
+                label="Previous"
+                variant="brand"
+                icon-name="utility:chevronleft"
+                onclick={handlePrevious}
+                disabled={disablePrevious}>
+            ></lightning-button>
+        </lightning-layout-item>
+        <lightning-layout-item flexibility="grow"></lightning-layout-item>
+        <lightning-layout-item>
+            <lightning-button
+                label="Next"
+                variant="brand"
+                icon-name="utility:chevronright"
+                icon-position="right"
+                onclick={handleNext}
+                disabled={disableNext}
+            ></lightning-button>
+        </lightning-layout-item>
+    </lightning-layout>
+</template>

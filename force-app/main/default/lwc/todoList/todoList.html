@@ -1,0 +1,62 @@
+<template>
+
+	<lightning-card title="ToDo" style="width: 100%;">
+	  <lightning-layout>
+		<lightning-layout-item padding="around-small" size="12">
+
+			<lightning-layout padding="around-small">
+				<lightning-input type="search"
+					onchange={handleUpdateKey}
+					variant="label-hidden"
+					class="slds-var-m-bottom_small"
+					label="Search"
+					placeholder="Search"
+					value={key}>
+				</lightning-input>
+			</lightning-layout>
+
+			<template if:true={isEmpty}>
+				<p class="empty-list">The list is Empty</p>
+			</template>
+			
+			<ul class="slds-has-dividers_around-space">
+				<template for:each={visibleItems} for:item="item"> <!--items-->
+					<li class="slds-item"
+					key={item.id}
+					data-category={item.Category__c}> <!--Different colors for different categories-->
+						<lightning-layout vertical-align="center" horizontal-align="spread">
+							<lightning-layout-item padding="horizontal-small">
+								<c-todo-Item
+									item={item}
+									ondeleteitem={handleDeleteItem}
+									onupdatelist={updateItems}>
+								</c-todo-Item>
+							  </lightning-layout-item>
+						</lightning-layout>
+					</li>
+				  </template>
+			</ul>
+			
+		</lightning-layout-item>
+	  </lightning-layout>
+	  <p slot="footer">
+		  <lightning-button
+		  	variant="brand"
+		  	label="Create todo"
+		  	onclick={handleUpsertItem}>
+		  </lightning-button>
+		  <c-paginator
+        	class="slds-show slds-is-relative"
+        	itemspaginator={items} onupdate={updateItemPaginator}>
+		  </c-paginator>
+	  </p>
+	</lightning-card>
+
+	<template if:true={isOpenWindow}>
+	  <c-edit-item
+	  	item={item}
+		is-open={isOpenWindow}
+		onclosemodal={handleCloseWindow}>
+	  </c-edit-item>
+	</template>
+  </template>

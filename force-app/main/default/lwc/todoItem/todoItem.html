@@ -1,0 +1,45 @@
+<template>
+  <lightning-layout vertical-align="center">
+    <lightning-layout-item padding="horizontal-small">
+      
+      <lightning-layout-item horizontal-align="center">
+        <img src='http://www.cdqcastelverde.it/wp-content/uploads/2017/07/statuto-300x300.png' alt="Item picture" />
+        <!--<img src='{item.Picture__c}' />-->
+      </lightning-layout-item>
+      
+      <lightning-button-icon icon-name="utility:edit"
+        variant="brand"
+        class="slds-m-left_xx-small"
+        title="Edit"
+        alternative-text="Edit"
+        onclick={handleClickEdit}>
+      </lightning-button-icon>
+  
+      <lightning-button-icon icon-name="utility:delete"
+        variant="brand"
+        class="slds-m-left_xx-small"
+        title="Delete"
+        alternative-text="Delete"
+        onclick={handleClickDelete}>
+      </lightning-button-icon>
+    </lightning-layout-item>
+
+    <lightning-layout-item padding="horizontal-small">
+      <lightning-record-view-form
+        record-id={item.Id}
+        record-category={item.Category__c}
+        object-api-name="Item__c"
+        onclick={handleClickEdit}>
+        <b>{item.Name}&nbsp;</b>
+        <br/>
+        Category: {item.Category__c}&nbsp;
+      </lightning-record-view-form>
+    </lightning-layout-item>
+    
+  </lightning-layout>
+
+    <template if:true={isOpenWindow}>
+      <c-edit-item item={item} is-open={isOpenWindow} onclosemodal={closeEditModal}>
+      </c-edit-item>
+    </template>
+  </template>
